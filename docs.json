@@ -127,5 +127,6 @@
       "og:site_name": "Okapay Documentation",
       "theme-color": "#D4FF00"
     }
-  }
+  },
+  "description": "Official Okapay documentation for developers and merchants. Learn to accept global payments with cards, digital wallets, cryptocurrency, and local rails across 160+ countries using the REST API, PHP SDK, hosted checkout, subscriptions, invoicing, and payouts."
 }
