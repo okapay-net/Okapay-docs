@@ -1,0 +1,107 @@
+---
+title: "Customer Profiles and Payment History in Okapay"
+sidebarTitle: "Customers"
+description: "View and manage customer profiles, payment history, and personal data in the Okapay dashboard. Understand what data is stored and how to manage it."
+icon: "users"
+---
+
+Every time a customer completes a checkout session through your Okapay integration, a customer profile is created or updated in your merchant account. These profiles give you a consolidated view of each buyer's contact information, transaction history, and payment activity — all accessible from the dashboard without writing any code.
+
+## What is stored in a customer profile
+
+Okapay automatically captures and stores the following information when a customer makes a payment:
+
+<CardGroup cols={2}>
+  <Card title="Contact Information" icon="address-card">
+    Name, email address, and billing address as entered during checkout.
+  </Card>
+
+  <Card title="Payment History" icon="clock-rotate-left">
+    A chronological list of every transaction the customer has completed through your account, including amounts, currencies, statuses, and dates.
+  </Card>
+
+  <Card title="Transaction Totals" icon="chart-bar">
+    Lifetime spend, number of successful payments, and any refunded or disputed amounts.
+  </Card>
+
+  <Card title="Dispute and Refund Activity" icon="triangle-exclamation">
+    Any chargebacks, refunds, or disputes associated with the customer's payments on your account.
+  </Card>
+</CardGroup>
+
+## Viewing customers in the dashboard
+
+Log in to [dashboard.okapay.net](https://dashboard.okapay.net) and navigate to **Customers** in the left sidebar. The customer list shows:
+
+- Customer name and email
+- Date of first payment
+- Total number of transactions
+- Total lifetime spend
+- Most recent transaction date and status
+
+Click any customer row to open the full customer profile with their complete transaction history.
+
+## Searching and filtering customers
+
+Use the search bar at the top of the customer list to find a specific customer by name or email address. You can also filter the list by:
+
+- **Date range** — show only customers who made their first purchase within a given period
+- **Transaction status** — filter to customers with at least one `paid`, `refunded`, or `disputed` transaction
+- **Spend range** — narrow the list to customers above or below a lifetime spend threshold
+
+## Customer payment history
+
+The payment history tab inside a customer profile lists every transaction in reverse chronological order. Each row shows:
+
+| Field | Description |
+| --- | --- |
+| **Transaction ID** | Unique identifier for the payment |
+| **Date** | Date and time the payment was initiated |
+| **Amount** | Payment amount and currency |
+| **Status** | Current status: `paid`, `pending`, `failed`, `refunded`, or `disputed` |
+| **Session ID** | The checkout session that generated the transaction |
+
+Click any transaction row to open the full transaction detail view, where you can issue a refund or view dispute information if applicable.
+
+## Issuing a refund from a customer profile
+
+<Steps>
+  <Step title="Open the customer profile">
+    Navigate to **Customers**, find the customer, and click their name to open the profile.
+  </Step>
+  <Step title="Select the transaction">
+    Under **Payment history**, click the transaction you want to refund.
+  </Step>
+  <Step title="Initiate the refund">
+    Click **Refund** in the transaction detail panel. Choose a full or partial refund amount and confirm.
+  </Step>
+  <Step title="Confirm the refund">
+    The transaction status updates to `refunded` (full) or `partial_refund`. The customer receives the funds according to their payment method's standard processing time.
+  </Step>
+</Steps>
+
+<Note>
+  Refunds are deducted from your available Okapay balance. If your balance is insufficient, the refund amount becomes an outstanding balance owed to Okapay and is recovered from future settlements.
+</Note>
+
+## Customer data and privacy
+
+Okapay stores customer data only as needed to process payments, manage your merchant account, and comply with legal obligations.
+
+<Accordion title="What data is retained and for how long?">
+  Okapay retains transaction records and associated customer data for the period required to satisfy payment-network chargeback windows, legal obligations, and dispute resolution requirements. This is typically a minimum of five years for transaction records. Contact [help@okapay.net](mailto:help@okapay.net) for specific data-retention questions.
+</Accordion>
+
+<Accordion title="Handling customer data deletion requests">
+  If a customer submits a data deletion or erasure request under applicable privacy law, contact [legal@okapay.net](mailto:legal@okapay.net). Okapay will review the request against its legal retention obligations and respond accordingly. Note that transaction records required for compliance, dispute resolution, or fraud prevention cannot be deleted early.
+</Accordion>
+
+<Accordion title="Exporting customer data">
+  To export a customer's complete transaction history, open the customer profile in the dashboard and click **Export** in the top-right corner. The export is delivered as a CSV file to the email address associated with your merchant account.
+</Accordion>
+
+## Tips for managing customer data quality
+
+<Tip>
+  Encourage customers to use a consistent email address across purchases. Okapay uses email address as the primary identifier when linking transactions to a customer profile — different email addresses result in separate profiles even for the same person.
+</Tip>

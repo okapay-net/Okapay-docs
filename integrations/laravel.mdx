@@ -1,0 +1,127 @@
+---
+title: "Configure the Okapay PHP SDK in a Laravel Application"
+sidebarTitle: "Laravel"
+description: "Configure the Okapay PHP SDK in Laravel. Set credentials via .env, register in config/services.php, and use the client in controllers and jobs."
+icon: "laravel"
+iconType: "brands"
+---
+
+The Okapay PHP SDK integrates cleanly into Laravel applications. Configure credentials in your `.env` file and instantiate the client anywhere in your application using Laravel's config helper. No service provider is required — the SDK works with standard Laravel conventions out of the box.
+
+## Requirements
+
+- PHP 8.1\+
+- Laravel 10\+
+- [Composer](https://getcomposer.org/)
+
+## Installation
+
+Install the SDK with Composer:
+
+```bash
+composer require pkpayplus/pkpayplus-php
+```
+
+## Configuration
+
+<Steps>
+  <Step title="Add credentials to .env">
+    Add your Okapay API base URL and secret key to your `.env` file. Retrieve your secret key from the [merchant dashboard](https://dashboard.okapay.net/):
+
+    ```env
+    PAYDIOS_BASE_URL=https://api.okapay.net
+    PAYDIOS_SECRET_KEY=sk_live_xxx
+    ```
+
+    Never commit this file to version control.
+  </Step>
+  <Step title="Register in config/services.php">
+    Add a `okapay` entry to your `config/services.php` file so the SDK config is accessible via Laravel's config helper:
+
+    ```php
+    'okapay' => [
+        'base_url'   => env('PAYDIOS_BASE_URL'),
+        'secret_key' => env('PAYDIOS_SECRET_KEY'),
+    ],
+    ```
+  </Step>
+  <Step title="Instantiate the client">
+    Wherever you need the SDK, create a `Client` instance by passing the registered config:
+
+    ```php
+    use Okapay\Client;
+    
+    $pk = new Client(config('services.okapay'));
+    ```
+  </Step>
+</Steps>
+
+## Using in a Controller
+
+The example below shows a controller method that creates a Okapay checkout session and redirects the customer to the payment page:
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Okapay\Client;
+use Illuminate\Http\Request;
+
+class CheckoutController extends Controller
+{
+    public function create(Request $request)
+    {
+        $pk         = new Client(config('services.okapay'));
+        $merchantId = config('services.okapay.merchant_id');
+
+        $session = $pk->sessions()->create($merchantId, [
+            'amount'      => $request->input('amount'),
+            'currency'    => 'USD',
+            'description' => 'Order #' . $request->input('order_id'),
+            'source'      => 'laravel',
+        ]);
+
+        return redirect($session['checkout_url']);
+    }
+}
+```
+
+Add your Merchant ID to your `.env` and `config/services.php` alongside your secret key:
+
+```env
+PAYDIOS_MERCHANT_ID=your_merchant_id
+```
+
+```php
+'okapay' => [
+    'base_url'    => env('PAYDIOS_BASE_URL'),
+    'secret_key'  => env('PAYDIOS_SECRET_KEY'),
+    'merchant_id' => env('PAYDIOS_MERCHANT_ID'),
+],
+```
+
+## Listing Products
+
+Use the same pattern to call any SDK method. The example below lists your first 20 products:
+
+```php
+$pk       = new Client(config('services.okapay'));
+$products = $pk->products()->list(['per_page' => 20]);
+```
+
+<Tip>
+  Bind `Okapay\Client` in your `AppServiceProvider` as a singleton to avoid re-instantiating the client on every request:
+
+  ```php
+  $this->app->singleton(\Okapay\Client::class, function () {
+      return new \Okapay\Client(config('services.okapay'));
+  });
+  ```
+
+  You can then resolve it via dependency injection or `app(\Okapay\Client::class)`.
+</Tip>
+
+<Info>
+  See the [PHP SDK reference](/integrations/php) for the full list of available methods, including product management, checkout sessions, and error handling.
+</Info>

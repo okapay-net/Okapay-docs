@@ -1,0 +1,102 @@
+---
+title: "Okapay Merchant ID: Find and Use It"
+sidebarTitle: "Merchant ID"
+description: "Your Okapay Merchant ID identifies your account in API paths. Learn where to find it and how to use it in checkout session requests."
+icon: "fingerprint"
+---
+
+Your Merchant ID is the unique identifier for your Okapay merchant account. You need it in the URL path of certain API calls — specifically when creating and verifying checkout sessions. Unlike your API keys, the Merchant ID is not a secret and does not need to be hidden from logs or version control.
+
+## Where to find your Merchant ID
+
+Log in to the [Okapay dashboard](https://dashboard.okapay.net/dashboard/api-keys) and navigate to **Dashboard → API Keys**. Your Merchant ID appears at the top of the page, above your API keys, in the format:
+
+```text
+mid_xxxxxxxxxxxxxxxx
+```
+
+Copy it and store it alongside your other environment configuration.
+
+## Using your Merchant ID in API requests
+
+Two API endpoints require your Merchant ID in the URL path:
+
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| `POST` | `/merchant-api/{merchant_id}/checkout-sessions` | Create a checkout session |
+| `GET` | `/merchant-api/{merchant_id}/{session_id}` | Retrieve or verify a session |
+
+Replace `{merchant_id}` with your actual Merchant ID value. You still need to include your secret key as a Bearer token in the `Authorization` header.
+
+### Create a checkout session
+
+```bash
+curl -X POST https://api.okapay.net/merchant-api/mid_xxxxxxxxxxxxxxxx/checkout-sessions \
+  -H "Authorization: Bearer sk_live_xxxxxxxxx" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "amount": 2999,
+    "currency": "USD",
+    "description": "Order #1042",
+    "source": "custom_php"
+  }'
+```
+
+### Verify a checkout session
+
+```bash
+curl https://api.okapay.net/merchant-api/mid_xxxxxxxxxxxxxxxx/sess_xxxxxxxxxx \
+  -H "Authorization: Bearer sk_live_xxxxxxxxx"
+```
+
+## Using your Merchant ID with the PHP SDK
+
+The PHP SDK accepts your Merchant ID as an argument when calling session methods — you do not need to embed it in a URL manually.
+
+```php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+use Okapay\Client;
+
+$pk = new Client(); // reads PAYDIOS_SECRET_KEY from .env automatically
+
+$merchantId = 'mid_xxxxxxxxxxxxxxxx';
+
+// Create a checkout session
+$session = $pk->sessions()->create($merchantId, [
+    'amount'      => 2999,
+    'currency'    => 'USD',
+    'description' => 'Order #1042',
+    'source'      => 'custom_php',
+]);
+
+$sessionId = $session['session_id'];
+
+// Verify the session after the customer returns
+$status = $pk->sessions()->verify($merchantId, $sessionId);
+
+echo $status['status']; // e.g. "paid"
+```
+
+<Tip>
+  Store your Merchant ID in an environment variable alongside your secret key so both are available to your application at runtime without being hard-coded.
+
+  ```env
+  PAYDIOS_SECRET_KEY=sk_live_xxxxxxxxx
+  PAYDIOS_MERCHANT_ID=mid_xxxxxxxxxxxxxxxx
+  ```
+</Tip>
+
+## Merchant ID vs. API keys
+
+| Credential | Purpose | Keep secret? |
+| --- | --- | --- |
+| **Merchant ID** | Identifies your account in URL paths | No — safe to log and reference |
+| **Secret Key** (`sk_live_…`) | Authenticates all API requests | **Yes** — treat like a password |
+| **Publishable Key** | Client-side checkout operations | No — safe for browser code |
+
+<Note>
+  Your Merchant ID does not change. You do not need to rotate it. If you believe your account has been compromised, rotate your **API keys** (not your Merchant ID) from the dashboard.
+</Note>

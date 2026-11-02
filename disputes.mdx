@@ -1,0 +1,186 @@
+---
+title: "Manage Payment Disputes and Chargebacks in Okapay"
+sidebarTitle: "Disputes"
+description: "Understand the Okapay dispute lifecycle, respond to chargebacks within deadlines, submit evidence, and follow prevention tips to reduce dispute rates."
+icon: "scale-balanced"
+---
+
+A dispute — also called a chargeback — occurs when a customer contacts their bank or card issuer to reverse a payment rather than requesting a refund directly from you. Okapay manages the dispute process with your payment partners on your behalf, but your cooperation and timely evidence submission are essential to contesting a dispute successfully.
+
+## How disputes work
+
+<Steps>
+  <Step title="Dispute opened">
+    The customer contacts their bank or card issuer. The bank initiates a chargeback against the transaction. Okapay receives the dispute notification from your payment partner and notifies you by email and in the dashboard.
+  </Step>
+  <Step title="Funds withheld">
+    Okapay places a hold on the disputed transaction amount. A chargeback fee equal to 12% of the disputed amount is also applied to your account.
+  </Step>
+  <Step title="Evidence requested">
+    Okapay emails you with the dispute details and requests supporting evidence. You have **three (3) business days** from Okapay's request to submit your evidence — sooner if the payment partner deadline is shorter.
+  </Step>
+  <Step title="Evidence submitted">
+    Okapay reviews your evidence and submits it to the payment partner or card network on your behalf.
+  </Step>
+  <Step title="Decision issued">
+    The customer's issuing bank or card network reviews the evidence and issues a final decision. Okapay notifies you of the outcome and updates the transaction status accordingly.
+  </Step>
+</Steps>
+
+<Warning>
+  The three-business-day evidence deadline is strict. If you miss the deadline, Okapay may accept the dispute without contesting it, and the funds will be returned to the customer. Monitor your email and dashboard notifications closely.
+</Warning>
+
+## Dispute statuses
+
+| Status | Meaning |
+| --- | --- |
+| `needs_response` | A dispute has been opened and Okapay is awaiting your evidence submission. |
+| `evidence_submitted` | Okapay has submitted your evidence to the payment partner. The bank is reviewing. |
+| `under_review` | The payment partner or card network is reviewing the case. |
+| `won` | The dispute was decided in your favour. The held funds are released back to your account. |
+| `lost` | The dispute was decided in the customer's favour. The transaction amount and chargeback fee are deducted from your account. |
+| `accepted` | Okapay accepted the dispute (either automatically or at your instruction) without contesting. |
+
+## Viewing disputes in the dashboard
+
+Log in to [dashboard.okapay.net](https://dashboard.okapay.net) and select **Disputes** from the left sidebar. Each row shows:
+
+- **Dispute ID** and **Transaction ID**
+- **Customer** name and email
+- **Disputed amount** and currency
+- **Dispute reason** (e.g. `fraudulent`, `product_not_received`, `subscription_cancelled`)
+- **Response deadline**
+- **Status**
+
+Click any dispute row to open the full detail view where you can submit evidence.
+
+## Dispute reasons
+
+Different dispute reasons require different types of evidence. Common dispute reasons include:
+
+<Accordion title="Fraudulent (unauthorized transaction)">
+  The customer claims they did not authorise the payment. Provide evidence of legitimate authorisation: IP address or device records at checkout, 3D Secure authentication records, prior transaction history with the same customer, or delivery confirmation to the billing address.
+</Accordion>
+
+<Accordion title="Product or service not received">
+  The customer claims the goods or services were never delivered. Provide shipping confirmation, carrier tracking with delivery confirmation, digital delivery logs, or service completion records.
+</Accordion>
+
+<Accordion title="Product not as described">
+  The customer claims what they received was materially different from what you advertised. Provide product descriptions, photos, original order details, and any customer communications that show the product was accurately represented.
+</Accordion>
+
+<Accordion title="Duplicate transaction">
+  The customer was charged more than once for the same order. Provide order records showing only one transaction was processed, or refund records showing any duplicate was already resolved.
+</Accordion>
+
+<Accordion title="Subscription or recurring billing">
+  The customer disputes a recurring charge. Provide the original subscription sign-up confirmation, the cancellation policy the customer accepted, and any cancellation request records.
+</Accordion>
+
+## Submitting evidence
+
+<Steps>
+  <Step title="Open the dispute">
+    Go to **Disputes** in the dashboard and click the dispute with status `needs_response`.
+  </Step>
+  <Step title="Review the dispute reason">
+    Read the reason code provided. Use this to determine which evidence documents are most relevant.
+  </Step>
+  <Step title="Upload your evidence">
+    Upload supporting documents in the evidence panel. Accepted formats include PDF, JPG, and PNG. Add a written explanation in the **Additional context** field to help the reviewer understand the transaction.
+  </Step>
+  <Step title="Submit before the deadline">
+    Click **Submit evidence**. The status updates to `evidence_submitted`. You cannot add further evidence after submission, so make sure your submission is complete.
+  </Step>
+</Steps>
+
+## Evidence types Okapay may request
+
+Depending on the dispute reason, Okapay may request any of the following:
+
+- Transaction records and invoices
+- Customer name and contact information
+- Product or service descriptions
+- Proof of delivery (carrier tracking, delivery confirmation)
+- Shipping confirmation and tracking information
+- Customer communications (emails, chat logs, support tickets)
+- Accepted terms and conditions or refund policy
+- Cancellation records
+- Proof of service completion (digital access logs, login records)
+- IP address or device information (where legally permissible)
+- Evidence of prior transactions with the same customer
+- Proof of any refund already issued
+- Signed contracts or authorisation documents
+
+<Note>
+  Evidence must be accurate, complete, and clearly organised. The issuing bank's reviewer may have limited time to assess your submission — label documents clearly and include a concise summary of the transaction history.
+</Note>
+
+## Chargeback fees
+
+Okapay charges a fee of **12% of the disputed amount** for each chargeback received, regardless of the outcome. This fee is separate from the disputed transaction amount itself.
+
+For example, if the disputed transaction was $$500, the chargeback fee is $$60. If you win the dispute, the $$500 is returned to your account, but the $$60 fee is not refunded.
+
+<Accordion title="How chargeback fees are collected">
+  The chargeback fee is deducted from your available Okapay balance at the time the dispute is opened. If your balance is insufficient, the fee becomes an outstanding amount recovered from future settlements.
+</Accordion>
+
+## Chargeback rate monitoring
+
+Okapay monitors your dispute activity continuously. If your chargeback rate reaches or exceeds **1%**, your account enters enhanced risk review. Okapay may respond by:
+
+- Increasing your reserve requirement
+- Extending your settlement period
+- Restricting certain payment methods
+- Requiring additional fraud controls
+- Suspending processing in severe cases
+
+A 1% chargeback rate is a review trigger, not an automatic suspension threshold. Okapay may also act below 1% if the nature of your disputes indicates elevated risk.
+
+## Preventing disputes
+
+Taking proactive steps to reduce chargebacks protects your revenue and keeps your account in good standing.
+
+<CardGroup cols={2}>
+  <Card title="Use clear billing descriptors" icon="file-signature">
+    Make sure your business name on the customer's bank statement matches what they recognise. Confusing descriptors are a leading cause of "I don't recognise this charge" disputes.
+  </Card>
+
+  <Card title="Send order confirmations" icon="envelope">
+    Email a detailed receipt immediately after purchase — include the product name, amount, and your customer support contact. This reduces confusion and gives customers a direct path to resolve issues with you first.
+  </Card>
+
+  <Card title="Provide delivery tracking" icon="truck">
+    Share carrier tracking numbers for physical goods so customers can follow their shipment. Disputes for non-delivery drop significantly when customers have visibility into delivery status.
+  </Card>
+
+  <Card title="Respond to support requests quickly" icon="headset">
+    Most customers raise a chargeback only after failing to get a response from the merchant. A fast, friendly support response can resolve the issue before a dispute is ever opened.
+  </Card>
+
+  <Card title="Display your refund policy clearly" icon="rotate-left">
+    Show your refund and cancellation policy at checkout and require explicit acceptance. This provides evidence that the customer understood the terms at the time of purchase.
+  </Card>
+
+  <Card title="Use 3D Secure authentication" icon="shield-check">
+    Enable 3D Secure for eligible card transactions. Successful 3DS authentication shifts liability for fraudulent chargebacks to the card issuer, not your account.
+  </Card>
+</CardGroup>
+
+## Disputes you cannot win
+
+Okapay may choose not to contest a dispute if it determines that:
+
+- Insufficient evidence is available
+- The cost of representment outweighs the transaction value
+- The dispute reason makes a successful outcome unlikely
+- The payment partner does not support representment for the specific dispute reason
+
+Okapay may accept a dispute without your separate approval in these circumstances. You authorise Okapay to exercise this right as part of using the platform.
+
+## Contacting Okapay about a dispute decision
+
+If you disagree with how Okapay handled a dispute, contact [legal@okapay.net](mailto:legal@okapay.net) with your dispute ID and a description of your concern. Okapay and the merchant should first attempt to resolve the matter directly before pursuing formal dispute resolution under the Merchant Agreement.

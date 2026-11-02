@@ -1,6 +1,6 @@
-# Mintlify Starter Kit
+# Okapay Documentation
 
-Use the starter kit to get your docs deployed and ready to customize.
+Mintlify-powered developer documentation for Okapay payment APIs, integrations, and merchant guides.
 
 Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
 
