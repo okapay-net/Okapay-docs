@@ -52,7 +52,7 @@ The PHP SDK handles authentication automatically. Set your secret key as an envi
 Add your key to your `.env` file:
 
 ```env
-PAYDIOS_SECRET_KEY=sk_live_xxxxxxxxx
+OKAPAY_SECRET_KEY=sk_live_xxxxxxxxx
 ```
 
 Then create the client without any arguments:
@@ -60,7 +60,7 @@ Then create the client without any arguments:
 ```php
 use Okapay\Client;
 
-$pk = new Client(); // auto-reads PAYDIOS_SECRET_KEY from env
+$okapay = new Client(); // auto-reads OKAPAY_SECRET_KEY from env
 ```
 
 If you prefer to pass the key explicitly (for example, in a multi-tenant setup where different merchants use different keys), you can do so directly:
@@ -68,7 +68,7 @@ If you prefer to pass the key explicitly (for example, in a multi-tenant setup w
 ```php
 use Okapay\Client;
 
-$pk = new Client(['secret_key' => 'sk_live_xxxxxxxxx']);
+$okapay = new Client(['secret_key' => 'sk_live_xxxxxxxxx']);
 ```
 
 In Laravel, register your credentials in `config/services.php` and pass them to the client:
@@ -76,13 +76,13 @@ In Laravel, register your credentials in `config/services.php` and pass them to 
 ```php
 // config/services.php
 'okapay' => [
-    'base_url'   => env('PAYDIOS_BASE_URL'),
-    'secret_key' => env('PAYDIOS_SECRET_KEY'),
+    'base_url'   => env('OKAPAY_BASE_URL'),
+    'secret_key' => env('OKAPAY_SECRET_KEY'),
 ],
 ```
 
 ```php
-$pk = new \Okapay\Client(config('services.okapay'));
+$okapay = new \Okapay\Client(config('services.okapay'));
 ```
 
 ## Security best practices

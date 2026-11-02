@@ -59,7 +59,7 @@ Store your secret key in an environment variable rather than hard-coding it in s
 Add the following to your `.env` file:
 
 ```env
-PAYDIOS_SECRET_KEY=sk_live_xxxxxxxxx
+OKAPAY_SECRET_KEY=sk_live_xxxxxxxxx
 ```
 
 <Warning>
@@ -68,7 +68,7 @@ PAYDIOS_SECRET_KEY=sk_live_xxxxxxxxx
 
 ## Using your secret key with the PHP SDK
 
-Once `PAYDIOS_SECRET_KEY` is set in your environment, create the client without any arguments:
+Once `OKAPAY_SECRET_KEY` is set in your environment, create the client without any arguments:
 
 ```php
 <?php
@@ -77,13 +77,13 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Okapay\Client;
 
-$pk = new Client(); // reads PAYDIOS_SECRET_KEY from env automatically
+$okapay = new Client(); // reads OKAPAY_SECRET_KEY from env automatically
 ```
 
 You can also pass the key explicitly if you prefer:
 
 ```php
-$pk = new Client(['secret_key' => 'sk_live_xxxxxxxxx']);
+$okapay = new Client(['secret_key' => 'sk_live_xxxxxxxxx']);
 ```
 
 In a Laravel application, register the key in `config/services.php`:
@@ -91,15 +91,15 @@ In a Laravel application, register the key in `config/services.php`:
 ```php
 // config/services.php
 'okapay' => [
-    'base_url'   => env('PAYDIOS_BASE_URL', 'https://api.okapay.net'),
-    'secret_key' => env('PAYDIOS_SECRET_KEY'),
+    'base_url'   => env('OKAPAY_BASE_URL', 'https://api.okapay.net'),
+    'secret_key' => env('OKAPAY_SECRET_KEY'),
 ],
 ```
 
 Then pass the config array to the client:
 
 ```php
-$pk = new \Okapay\Client(config('services.okapay'));
+$okapay = new \Okapay\Client(config('services.okapay'));
 ```
 
 ## Rotating your API keys
@@ -129,7 +129,7 @@ Rotate your secret key immediately if you suspect it has been compromised, or as
 
 Follow these practices to keep your keys and account secure:
 
-- **Use environment variables** — store `PAYDIOS_SECRET_KEY` in `.env` locally and your hosting provider's secret manager in production. Never hard-code key values in source files.
+- **Use environment variables** — store `OKAPAY_SECRET_KEY` in `.env` locally and your hosting provider's secret manager in production. Never hard-code key values in source files.
 - **Keep `.env` out of version control** — add `.env` to `.gitignore` and audit your repository history if you are unsure whether a key was previously committed.
 - **Use the publishable key for client-side code** — never use your secret key in browser JavaScript, mobile apps, or any code that runs on a customer's device.
 - **Limit access** — only the server processes and team members that genuinely need the secret key should have access to it.

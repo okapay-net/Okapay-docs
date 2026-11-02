@@ -52,7 +52,7 @@ Okapay supports **135\+ currencies** and operates in **160\+ countries**, with s
 
 <Steps>
   <Step title="Integrate the API or PHP SDK">
-    Add Okapay to your backend using the REST API or the PHP SDK (`composer require pkpayplus/pkpayplus-php`). Create a product and open a checkout session in a few lines of code.
+    Add Okapay to your backend using the REST API or the PHP SDK (`composer require okapay/okapay-php`). Create a product and open a checkout session in a few lines of code.
   </Step>
   <Step title="Your customer pays via hosted checkout">
     Okapay presents a secure, PCI-compliant hosted checkout page. Your customer selects their preferred payment method — card, wallet, crypto, or local rail — and completes the payment.
@@ -69,13 +69,13 @@ Okapay is built API-first so you can integrate quickly and stay in control. The 
 Install the PHP SDK with Composer:
 
 ```bash
-composer require pkpayplus/pkpayplus-php
+composer require okapay/okapay-php
 ```
 
 Authenticate by setting your secret key as an environment variable:
 
 ```env
-PAYDIOS_SECRET_KEY=sk_live_xxxxxxxxx
+OKAPAY_SECRET_KEY=sk_live_xxxxxxxxx
 ```
 
 Then make your first API call:
@@ -85,8 +85,8 @@ Then make your first API call:
 require __DIR__ . '/vendor/autoload.php';
 use Okapay\Client;
 
-$pk = new Client(); // reads PAYDIOS_SECRET_KEY from env
-$products = $pk->products()->list(['per_page' => 20]);
+$okapay = new Client(); // reads OKAPAY_SECRET_KEY from env
+$products = $okapay->products()->list(['per_page' => 20]);
 ```
 
 Okapay infrastructure is certified **PCI DSS Level 1** — the highest level in the payments industry — so your customers' card data is always handled to the strictest security standards. Additional certifications include ISO 27001, SOC 2 Type II, and GDPR compliance.

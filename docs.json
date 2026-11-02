@@ -88,7 +88,7 @@
   "footer": {
     "socials": {
       "x": "https://x.com/okapay",
-      "github": "https://github.com/pkpayplus/pkpayplus-php",
+      "github": "https://github.com/okapay/okapay-php",
       "linkedin": "https://www.linkedin.com/company/okapay-net"
     },
     "links": [
@@ -109,7 +109,7 @@
       {
         "header": "Community",
         "items": [
-          { "label": "GitHub", "href": "https://github.com/pkpayplus/pkpayplus-php" }
+          { "label": "GitHub", "href": "https://github.com/okapay/okapay-php" }
         ]
       }
     ]

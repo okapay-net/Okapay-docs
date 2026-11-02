@@ -26,7 +26,7 @@ WooCommerce Support
 
 Easy Configuration
 
-[Inspect Code](https://github.com/pkpayplus/pkpayplus-php) [Setup Guide](https://github.com/pkpayplus/pkpayplus-php)
+[Inspect Code](https://github.com/okapay/okapay-php) [Setup Guide](https://github.com/okapay/okapay-php)
 
 ![shopify](https://okapay.net/_next/image?url=%2Fshopify.png&w=64&q=75)
 
@@ -46,7 +46,7 @@ Multi-Currency
 
 Analytics Dashboard
 
-[Inspect Code](https://github.com/pkpayplus/pkpayplus-php) [Setup Guide](https://github.com/pkpayplus/pkpayplus-php)
+[Inspect Code](https://github.com/okapay/okapay-php) [Setup Guide](https://github.com/okapay/okapay-php)
 
 ![react](https://okapay.net/_next/image?url=%2Freact.png&w=64&q=75)
 
@@ -66,7 +66,7 @@ TypeScript Ready
 
 Component Library
 
-[Inspect Code](https://github.com/pkpayplus/pkpayplus-php) [Setup Guide](https://github.com/pkpayplus/pkpayplus-php)
+[Inspect Code](https://github.com/okapay/okapay-php) [Setup Guide](https://github.com/okapay/okapay-php)
 
 ![nextjs](https://okapay.net/next.svg)
 
@@ -86,7 +86,7 @@ Middleware
 
 Performance Optimized
 
-[Inspect Code](https://github.com/pkpayplus/pkpayplus-php) [Setup Guide](https://github.com/pkpayplus/pkpayplus-php)
+[Inspect Code](https://github.com/okapay/okapay-php) [Setup Guide](https://github.com/okapay/okapay-php)
 
 Coming SoonPackage
 
@@ -104,7 +104,7 @@ Artisan Commands
 
 Blade Components
 
-[Inspect Code](https://github.com/pkpayplus/pkpayplus-php) [Setup Guide](https://github.com/pkpayplus/pkpayplus-php)
+[Inspect Code](https://github.com/okapay/okapay-php) [Setup Guide](https://github.com/okapay/okapay-php)
 
 Coming SoonLibrary
 
@@ -122,10 +122,10 @@ Webhook Handling
 
 Documentation
 
-[Inspect Code](https://github.com/pkpayplus/pkpayplus-php) [Setup Guide](https://github.com/pkpayplus/pkpayplus-php)
+[Inspect Code](https://github.com/okapay/okapay-php) [Setup Guide](https://github.com/okapay/okapay-php)
 
 ## Need a Custom Integration?
 
 Don't see your platform? Our team can create custom integrations for any technology stack. We support REST APIs, webhooks, and provide comprehensive documentation.
 
-[Contact Our Team](https://okapay.net/contact) [View Documentation](https://github.com/pkpayplus/pkpayplus-php)
+[Contact Our Team](https://okapay.net/contact) [View Documentation](https://github.com/okapay/okapay-php)

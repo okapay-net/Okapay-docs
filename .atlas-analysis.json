@@ -1,7 +1,7 @@
 {
   "projectType": "saas",
-  "projectName": "PkPay+",
-  "projectDescription": "PkPay+ (Okapay) is a merchant payments platform that lets businesses accept global payments, manage subscriptions, send payouts, and integrate checkout flows via REST APIs and official SDKs.",
+  "projectName": "Okapay",
+  "projectDescription": "Okapay is a merchant payments platform that lets businesses accept global payments, manage subscriptions, send payouts, and integrate checkout flows via REST APIs and official SDKs.",
   "theme": "luma",
   "primaryColor": "#081028",
   "lightColor": "#7c7c7c",
@@ -79,12 +79,12 @@
     "POST /merchant-api/{merchant_id}/checkout-sessions",
     "GET /merchant-api/{merchant_id}/{session_id}",
     "Authorization: Bearer {secret_key}",
-    "PkPayPlus\\Client::products()->list()",
-    "PkPayPlus\\Client::products()->create()",
-    "PkPayPlus\\Client::products()->get()",
-    "PkPayPlus\\Client::products()->update()",
-    "PkPayPlus\\Client::products()->delete()",
-    "PkPayPlus\\Client::sessions()->create()",
-    "PkPayPlus\\Client::sessions()->verify()"
+    "Okapay\\Client::products()->list()",
+    "Okapay\\Client::products()->create()",
+    "Okapay\\Client::products()->get()",
+    "Okapay\\Client::products()->update()",
+    "Okapay\\Client::products()->delete()",
+    "Okapay\\Client::sessions()->create()",
+    "Okapay\\Client::sessions()->verify()"
   ]
 }

@@ -891,7 +891,7 @@ Slow ticket queues, generic answers
 
 React / Next.jsPHP / Laravel![WordPress / Woo](https://okapay.net/wordpress.svg)WordPress / WooNode.js / ExpressPython / FastAPIREST API / cURL
 
-[SDK Docs](https://github.com/pkpayplus/pkpayplus-php)
+[SDK Docs](https://github.com/okapay/okapay-php)
 
 Frontend SDKv2.4.0
 

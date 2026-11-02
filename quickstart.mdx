@@ -28,13 +28,13 @@ This page walks you through everything you need to go from zero to your first li
     Install the official Okapay PHP SDK with Composer:
 
     ```bash
-    composer require pkpayplus/pkpayplus-php
+    composer require okapay/okapay-php
     ```
 
     Add your Secret Key to your `.env` file:
 
     ```env
-    PAYDIOS_SECRET_KEY=sk_live_xxxxxxxxx
+    OKAPAY_SECRET_KEY=sk_live_xxxxxxxxx
     ```
 
     Do not commit your `.env` file to version control.
@@ -47,9 +47,9 @@ This page walks you through everything you need to go from zero to your first li
     require __DIR__ . '/vendor/autoload.php';
     use Okapay\Client;
     
-    $pk = new Client(); // reads PAYDIOS_SECRET_KEY from env
+    $okapay = new Client(); // reads OKAPAY_SECRET_KEY from env
     
-    $product = $pk->products()->create([
+    $product = $okapay->products()->create([
         'name'        => 'My First Product',
         'description' => 'A sample product',
         'status'      => 'published',
@@ -74,11 +74,11 @@ This page walks you through everything you need to go from zero to your first li
     require __DIR__ . '/vendor/autoload.php';
     use Okapay\Client;
     
-    $pk = new Client();
+    $okapay = new Client();
     
     $merchantId = 'your_merchant_id'; // from Dashboard → API Keys
     
-    $session = $pk->sessions()->create($merchantId, [
+    $session = $okapay->sessions()->create($merchantId, [
         'amount'      => 2999,         // $29.99 in cents
         'currency'    => 'USD',
         'description' => 'Order #1',
@@ -95,7 +95,7 @@ This page walks you through everything you need to go from zero to your first li
     After your customer completes (or attempts) payment, verify the session status on your server:
 
     ```php
-    $result = $pk->sessions()->verify($merchantId, $sessionId);
+    $result = $okapay->sessions()->verify($merchantId, $sessionId);
     
     if ($result['status'] === 'paid') {
         // Payment confirmed — fulfil the order

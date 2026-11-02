@@ -19,7 +19,7 @@ The Okapay PHP SDK integrates cleanly into Laravel applications. Configure crede
 Install the SDK with Composer:
 
 ```bash
-composer require pkpayplus/pkpayplus-php
+composer require okapay/okapay-php
 ```
 
 ## Configuration
@@ -29,8 +29,8 @@ composer require pkpayplus/pkpayplus-php
     Add your Okapay API base URL and secret key to your `.env` file. Retrieve your secret key from the [merchant dashboard](https://dashboard.okapay.net/):
 
     ```env
-    PAYDIOS_BASE_URL=https://api.okapay.net
-    PAYDIOS_SECRET_KEY=sk_live_xxx
+    OKAPAY_BASE_URL=https://api.okapay.net
+    OKAPAY_SECRET_KEY=sk_live_xxx
     ```
 
     Never commit this file to version control.
@@ -40,8 +40,8 @@ composer require pkpayplus/pkpayplus-php
 
     ```php
     'okapay' => [
-        'base_url'   => env('PAYDIOS_BASE_URL'),
-        'secret_key' => env('PAYDIOS_SECRET_KEY'),
+        'base_url'   => env('OKAPAY_BASE_URL'),
+        'secret_key' => env('OKAPAY_SECRET_KEY'),
     ],
     ```
   </Step>
@@ -51,7 +51,7 @@ composer require pkpayplus/pkpayplus-php
     ```php
     use Okapay\Client;
     
-    $pk = new Client(config('services.okapay'));
+    $okapay = new Client(config('services.okapay'));
     ```
   </Step>
 </Steps>
@@ -72,10 +72,10 @@ class CheckoutController extends Controller
 {
     public function create(Request $request)
     {
-        $pk         = new Client(config('services.okapay'));
+        $okapay         = new Client(config('services.okapay'));
         $merchantId = config('services.okapay.merchant_id');
 
-        $session = $pk->sessions()->create($merchantId, [
+        $session = $okapay->sessions()->create($merchantId, [
             'amount'      => $request->input('amount'),
             'currency'    => 'USD',
             'description' => 'Order #' . $request->input('order_id'),
@@ -90,14 +90,14 @@ class CheckoutController extends Controller
 Add your Merchant ID to your `.env` and `config/services.php` alongside your secret key:
 
 ```env
-PAYDIOS_MERCHANT_ID=your_merchant_id
+OKAPAY_MERCHANT_ID=your_merchant_id
 ```
 
 ```php
 'okapay' => [
-    'base_url'    => env('PAYDIOS_BASE_URL'),
-    'secret_key'  => env('PAYDIOS_SECRET_KEY'),
-    'merchant_id' => env('PAYDIOS_MERCHANT_ID'),
+    'base_url'    => env('OKAPAY_BASE_URL'),
+    'secret_key'  => env('OKAPAY_SECRET_KEY'),
+    'merchant_id' => env('OKAPAY_MERCHANT_ID'),
 ],
 ```
 
@@ -106,8 +106,8 @@ PAYDIOS_MERCHANT_ID=your_merchant_id
 Use the same pattern to call any SDK method. The example below lists your first 20 products:
 
 ```php
-$pk       = new Client(config('services.okapay'));
-$products = $pk->products()->list(['per_page' => 20]);
+$okapay       = new Client(config('services.okapay'));
+$products = $okapay->products()->list(['per_page' => 20]);
 ```
 
 <Tip>

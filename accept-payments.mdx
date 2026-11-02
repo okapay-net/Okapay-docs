@@ -22,9 +22,9 @@ Call the sessions endpoint with your merchant ID, the amount in the smallest cur
     ```php
     use Okapay\Client;
     
-    $pk = new Client(['secret_key' => 'sk_live_xxx']);
+    $okapay = new Client(['secret_key' => 'sk_live_xxx']);
     
-    $session = $pk->sessions()->create($merchantId, [
+    $session = $okapay->sessions()->create($merchantId, [
         'amount'      => 2999,          // amount in cents
         'currency'    => 'USD',
         'description' => 'Order #1042',
@@ -75,7 +75,7 @@ After the customer completes checkout, verify the session to confirm whether the
 <Tabs>
   <Tab title="PHP SDK">
     ```php
-    $status = $pk->sessions()->verify($merchantId, $sessionId);
+    $status = $okapay->sessions()->verify($merchantId, $sessionId);
     
     if ($status['status'] === 'paid') {
         // fulfil the order

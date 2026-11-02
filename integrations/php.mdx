@@ -22,7 +22,7 @@ The Okapay PHP SDK lets you integrate payment processing into any PHP applicatio
 Install the SDK with Composer:
 
 ```bash
-composer require pkpayplus/pkpayplus-php
+composer require okapay/okapay-php
 ```
 
 ## Configuration
@@ -30,7 +30,7 @@ composer require pkpayplus/pkpayplus-php
 The SDK resolves configuration in this order:
 
 1. Config array passed directly to `Client`
-2. Environment variables (`PAYDIOS_SECRET_KEY`, `PAYDIOS_BASE_URL`)
+2. Environment variables (`OKAPAY_SECRET_KEY`, `OKAPAY_BASE_URL`)
 3. Default base URL (`https://api.okapay.net`)
 
 This means you can rely on environment variables for credentials and only override when needed.
@@ -40,7 +40,7 @@ This means you can rely on environment variables for credentials and only overri
 Create a `.env` file in your project root and add your secret key:
 
 ```env
-PAYDIOS_SECRET_KEY=sk_live_xxxxxxxxx
+OKAPAY_SECRET_KEY=sk_live_xxxxxxxxx
 ```
 
 <Tip>
@@ -52,7 +52,7 @@ PAYDIOS_SECRET_KEY=sk_live_xxxxxxxxx
 If you prefer to configure the client explicitly, pass an array when creating the instance:
 
 ```php
-$pk = new Client([
+$okapay = new Client([
   'base_url'   => 'https://api.okapay.net',
   'secret_key' => 'sk_live_xxx'
 ]);
@@ -69,9 +69,9 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Okapay\Client;
 
-$pk = new Client();
+$okapay = new Client();
 
-$products = $pk->products()->list(['per_page' => 20]);
+$products = $okapay->products()->list(['per_page' => 20]);
 
 print_r($products);
 ```
@@ -103,7 +103,7 @@ The merchant identity is inferred from your secret key, so you do not need to pa
 Retrieve a paginated list of your products. Use `search` to filter by keyword:
 
 ```php
-$products = $pk->products()->list([
+$products = $okapay->products()->list([
   'per_page' => 20,
   'page'     => 1,
   'search'   => 'shirt'
@@ -115,7 +115,7 @@ $products = $pk->products()->list([
 Create a new product. Set `status` to `draft` to keep it unpublished until ready:
 
 ```php
-$created = $pk->products()->create([
+$created = $okapay->products()->create([
   'name'        => 'Black T-Shirt',
   'description' => 'Cotton tee',
   'status'      => 'draft',
@@ -131,7 +131,7 @@ $productId = $created['product']['id'];
 Retrieve a single product by its ID:
 
 ```php
-$product = $pk->products()->get($productId);
+$product = $okapay->products()->get($productId);
 ```
 
 ### Update product
@@ -139,7 +139,7 @@ $product = $pk->products()->get($productId);
 Update one or more fields on an existing product. Change `status` to `published` to make it live:
 
 ```php
-$updated = $pk->products()->update($productId, [
+$updated = $okapay->products()->update($productId, [
   'name'   => 'Black T-Shirt (Updated)',
   'status' => 'published'
 ]);
@@ -150,7 +150,7 @@ $updated = $pk->products()->update($productId, [
 Permanently delete a product:
 
 ```php
-$pk->products()->delete($productId);
+$okapay->products()->delete($productId);
 ```
 
 ## Checkout Sessions
@@ -169,7 +169,7 @@ The SDK uses these endpoints:
 Create a session for a specific transaction. Pass your Merchant ID (available in the [merchant dashboard](https://dashboard.okapay.net/)):
 
 ```php
-$session = $pk->sessions()->create($merchantId, [
+$session = $okapay->sessions()->create($merchantId, [
   'amount'      => 1999,
   'currency'    => 'USD',
   'description' => 'Order #1001',
@@ -184,7 +184,7 @@ $sessionId = $session['session_id'];
 After the customer completes payment, verify the session status on your server:
 
 ```php
-$status = $pk->sessions()->verify($merchantId, $sessionId);
+$status = $okapay->sessions()->verify($merchantId, $sessionId);
 ```
 
 ## Testing
@@ -202,9 +202,9 @@ The SDK ships with unit tests (mocked HTTP) and optional integration tests that 
 Integration tests are skipped unless you explicitly enable them. Add the following to your `.env`:
 
 ```env
-PAYDIOS_INTEGRATION=1
-PAYDIOS_BASE_URL=http://localhost:8000
-PAYDIOS_SECRET_KEY=sk_test_xxx
+OKAPAY_INTEGRATION=1
+OKAPAY_BASE_URL=http://localhost:8000
+OKAPAY_SECRET_KEY=sk_test_xxx
 ```
 
 Then run:
@@ -224,7 +224,7 @@ For Laravel-specific setup — including `config/services.php` registration, con
 If the SDK cannot find a secret key, requests will fail with an authentication error. Make sure your environment includes:
 
 ```env
-PAYDIOS_SECRET_KEY=sk_test_xxx
+OKAPAY_SECRET_KEY=sk_test_xxx
 ```
 
 If you are passing config manually, confirm the `secret_key` key is present in the array passed to `Client`.
@@ -238,11 +238,11 @@ If you are passing config manually, confirm the `secret_key` key is present in t
 ## Resources
 
 <CardGroup cols={2}>
-  <Card title="Okapay PHP SDK on GitHub" icon="github" href="https://github.com/pkpayplus/pkpayplus-php">
+  <Card title="Okapay PHP SDK on GitHub" icon="github" href="https://github.com/okapay/okapay-php">
     Browse the source code, open issues, and contribute to the SDK.
   </Card>
 
-  <Card title="Packagist Package" icon="box" href="https://packagist.org/packages/pkpayplus/pkpayplus-php">
+  <Card title="Packagist Package" icon="box" href="https://packagist.org/packages/okapay/okapay-php">
     View the Composer package on Packagist for version history and install stats.
   </Card>
 </CardGroup>

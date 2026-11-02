@@ -60,12 +60,12 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Okapay\Client;
 
-$pk = new Client(); // reads PAYDIOS_SECRET_KEY from .env automatically
+$okapay = new Client(); // reads OKAPAY_SECRET_KEY from .env automatically
 
 $merchantId = 'mid_xxxxxxxxxxxxxxxx';
 
 // Create a checkout session
-$session = $pk->sessions()->create($merchantId, [
+$session = $okapay->sessions()->create($merchantId, [
     'amount'      => 2999,
     'currency'    => 'USD',
     'description' => 'Order #1042',
@@ -75,7 +75,7 @@ $session = $pk->sessions()->create($merchantId, [
 $sessionId = $session['session_id'];
 
 // Verify the session after the customer returns
-$status = $pk->sessions()->verify($merchantId, $sessionId);
+$status = $okapay->sessions()->verify($merchantId, $sessionId);
 
 echo $status['status']; // e.g. "paid"
 ```
@@ -84,8 +84,8 @@ echo $status['status']; // e.g. "paid"
   Store your Merchant ID in an environment variable alongside your secret key so both are available to your application at runtime without being hard-coded.
 
   ```env
-  PAYDIOS_SECRET_KEY=sk_live_xxxxxxxxx
-  PAYDIOS_MERCHANT_ID=mid_xxxxxxxxxxxxxxxx
+  OKAPAY_SECRET_KEY=sk_live_xxxxxxxxx
+  OKAPAY_MERCHANT_ID=mid_xxxxxxxxxxxxxxxx
   ```
 </Tip>
 
