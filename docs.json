@@ -103,7 +103,6 @@
       {
         "header": "Company",
         "items": [
-          { "label": "Phone", "href": "tel:+447853756631" },
           { "label": "Contact", "href": "https://okapay.net/contact" }
         ]
       },
